@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+
+{% block heading %} Add Product {% endblock %}
+
+{% block content %}
+<form action method="post" autocomplete="off">
+  {% csrf_token %}
+{{ form|crispy }}
+<br><button type="submit" class="btn btn-success" name="button"><i class="fas fa-database"></i> Submit </button>
+<form>
+  <a class="btn btn-primary" href=" {%url 'display' %} "><i class="fas fa-list"></i> View Products</a>
+{% endblock %}

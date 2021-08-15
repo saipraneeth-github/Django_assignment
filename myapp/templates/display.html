@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block heading %} Display {% endblock %}
+
+{% block content %}
+
+<table class="table table-borderless">
+  <thead class="border-bottom font-weight-bold">
+    <tr>
+      <td>Product Name</td>
+      <td>Price</td>
+      <td>Category</td>
+      <td>Description</td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in product_list %}
+    <tr>
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product.category_id}}</td>
+      <td>{{product.description}}</td>
+      <td>
+        <a href="{% url 'edit' product.id %}" class="btn btn-light">
+          <i class="far fa-edit fa-lg"></i>
+        </a>
+        <form action="{% url 'delete' product.id %}" method="post" class="d-inline">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-light">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+
+</table>
+
+<a class="btn btn-primary" href="{% url 'create' %}"><i class="fas fa-arrow-left"></i> Back</a>
+
+{% endblock %}
